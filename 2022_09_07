@@ -1,0 +1,23 @@
+[프로그래머스]
+
+<문제 1> (https://school.programmers.co.kr/learn/courses/30/lessons/42747)
+
+오름차순 정렬 후, index값(citations[i]번 이상 인용된 논문 갯수)보다 citations[i]가 크면 break 
+
+import java.util.*;
+
+class Solution {
+    public int solution(int[] citations) {
+        int answer = 0;       
+        Arrays.sort(citations);
+ 
+        for (int i = 0; i < citations.length; i++) {
+            int index = citations.length - i;
+            if (citations[i] >= index) {
+                answer = index;
+                break;
+            }
+        }
+        return answer;
+    }
+}
