@@ -1,0 +1,23 @@
+[프로그래머스]
+
+<문제> (https://school.programmers.co.kr/learn/courses/30/lessons/12939)
+
+최소값 최대값을 split으로 나눈 문자열 배열의 첫 번째 값으로 두고, 값이 최소값보다 작으면 교체, 최댓값보다 크면 교체하고 최소값 + " " + 최대값으로 출력
+
+class Solution {
+    public String solution(String s) {
+        String answer = "";
+        String[] sarr = s.split(" ");
+        int min = Integer.parseInt(sarr[0]), max = Integer.parseInt(sarr[0]);
+        for (int i =1; i < sarr.length; i++) {
+            int val = Integer.parseInt(sarr[i]);
+            if (min > val) {
+                min = val;
+            } else if (max < val) {
+                max = val;   
+            }
+        }
+        answer += min + " " + max;
+        return answer;
+    }
+}
