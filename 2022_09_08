@@ -2,6 +2,8 @@
 
 <문제> (https://school.programmers.co.kr/learn/courses/30/lessons/87389)
 
+나머지가 1이 되는 수 찾기
+
 index가 2부터 시작해서 나머지가 1인 수를 찾고 찾으면 break
 
 class Solution {
