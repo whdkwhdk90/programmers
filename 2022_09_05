@@ -1,0 +1,54 @@
+[프로그래머스]
+
+<문제> (https://school.programmers.co.kr/learn/courses/30/lessons/118667?language=java)
+
+두 큐 합 같게 만들기
+
+leftQueue의 합, rightQueue의 합을 비교하면서 큰쪽이면 반대쪽으로 옮겨가며 실행.
+
+import java.util.*;
+
+class Solution {
+    public int solution(int[] queue1, int[] queue2) {
+        int answer = 0;
+        int leftSum = 0;
+        int rightSum = 0;
+        for (int i=0; i< queue1.length; i++) {
+            leftSum += queue1[i];
+        }
+        for (int i=0; i< queue2.length; i++) {
+            rightSum += queue2[i];
+        }
+        Integer[] newQueue1 = Arrays.stream( queue1 ).boxed().toArray( Integer[]::new );
+        ArrayList leftArrayList = new ArrayList(Arrays.asList(newQueue1));
+        Integer[] newQueue2 = Arrays.stream( queue2 ).boxed().toArray( Integer[]::new );
+        ArrayList rightArrayList = new ArrayList(Arrays.asList(newQueue2));
+        
+        int checkValue = 0;
+        for (int i=0; i < leftArrayList.size() + rightArrayList.size(); i++) {
+            if (leftSum > rightSum) {
+                int temp = (int)leftArrayList.get(0);
+                leftArrayList.remove(0);
+                rightArrayList.add(temp);
+                leftSum -= temp;
+                rightSum += temp;
+                checkValue++;
+            } else if (leftSum < rightSum) {
+                int temp = (int)rightArrayList.get(0);
+                rightArrayList.remove(0);
+                leftArrayList.add(temp);
+                rightSum -= temp;
+                leftSum += temp;
+                checkValue++;
+            } else {
+                break;
+            }
+            answer++;
+        }
+        if (checkValue == leftArrayList.size() + rightArrayList.size()) {
+            return -1;
+        }
+            
+        return answer;
+    }
+}
