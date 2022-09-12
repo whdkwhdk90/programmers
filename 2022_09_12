@@ -1,0 +1,35 @@
+[프로그래머스]
+
+<문제> (https://school.programmers.co.kr/learn/courses/30/lessons/12909)
+
+올바른 괄호
+
+괄호 짝을 카운트해서 음수이면 ) 괄호가 한개이상 더 많은거니까 break
+효율성때문에 replaceAll을 쓰지 않고 해야함.
+
+
+class Solution {
+    boolean solution(String s) {
+        boolean answer = true;
+        if (s.substring(0,1).equals(")") || s.length() % 2 != 0) {
+            return false;
+        }
+        int count = 0;
+        for (int i=0; i< s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                count++;
+            } else {
+                count--;
+            }           
+            if (count < 0) {
+                break;
+            }
+        }
+        
+        if (count == 0) {
+            return answer;
+        } else {
+            return false;
+        }
+    }
+}
