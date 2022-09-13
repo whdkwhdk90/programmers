@@ -1,0 +1,19 @@
+[프로그래머스]
+
+<문제> (https://school.programmers.co.kr/learn/courses/30/lessons/70128)
+
+내적
+
+곱의 합 for문.
+IntStream을 쓰는 방법도... 괜찮아보이네.
+
+
+class Solution {
+    public int solution(int[] a, int[] b) {
+        int answer = 0;
+        for (int i=0; i<a.length; i++) {
+             answer += a[i] * b[i];
+        }     
+        return answer;
+    }
+}
