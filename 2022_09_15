@@ -1,0 +1,22 @@
+[프로그래머스]
+
+<문제> (https://school.programmers.co.kr/learn/courses/30/lessons/82612)
+
+부족한 금액 계산하기
+
+주의사항 : int형, long형에 대한 자료형 범위..
+
+class Solution {
+    public long solution(int price, int money, int count) {
+        long answer = -1;
+        long sum = 0;
+        for (int i=1; i <= count; i++ ) {
+            sum += i;
+        }
+        if (price * sum - money > 0 ) {
+            return price * sum - money;
+        } else {
+            return 0;
+        }
+    }
+}
