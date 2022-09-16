@@ -1,0 +1,31 @@
+[프로그래머스]
+
+<문제> (https://school.programmers.co.kr/learn/courses/30/lessons/68644)
+
+두 개 뽑아서 더하기
+
+주의사항 : 오름차순, 중복 방지에 뭐가 필요할까..?
+
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] numbers) {
+        int[] answer = {};
+        HashMap<Integer,Integer> hsmap = new HashMap<>();
+        for (int i=0; i< numbers.length; i++) {
+            for (int j=i+1; j< numbers.length; j++) {
+                if (hsmap.get(numbers[i]+numbers[j]) == null) {
+                    hsmap.put(numbers[i]+numbers[j],numbers[i]+numbers[j]);
+                }
+            }
+        }
+        int k=0;
+        answer = new int[hsmap.size()];
+        for ( Integer key  : hsmap.keySet()) {
+            answer[k] = hsmap.get(key);
+            k++;
+        }
+        Arrays.sort(answer);
+        return answer;
+    }
+}
