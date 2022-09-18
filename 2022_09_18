@@ -1,0 +1,44 @@
+[프로그래머스]
+
+<문제> (https://school.programmers.co.kr/learn/courses/30/lessons/42889)
+
+실패율
+
+주의사항 : 실패율이니까 분수를 해결할 수 있는 double배열을 쓰는방법..
+
+import java.util.*;
+
+class Solution {
+    public int[] solution(int N, int[] stages) {
+        int[] answer = new int[N];
+
+        double[] darr = new double[N];
+        for (int i=1; i<=N; i++) {
+            int temp = 0;
+            for (int j=0; j< stages.length; j++) {
+                if (stages[j] == -1) {
+                    continue;
+                }
+                temp++;
+                if (i == stages[j]) {
+                    darr[i-1]++;
+                    stages[j] = -1;
+                }
+            }
+            darr[i-1] = (temp == 0) ? 0 : darr[i-1] / temp;
+        }
+        for (int i=0; i<darr.length; i++) {
+            double max = -1;
+            int index = 0;
+            for (int j=0; j<darr.length; j++) {
+                if ((darr[j] != -1) && (darr[j] > max)) {
+                    max = darr[j];
+                    index = j;
+                }
+            }
+            answer[i] = index+1;
+            darr[index] = -2; 
+        }
+        return answer;
+    }
+}
