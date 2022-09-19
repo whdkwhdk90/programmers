@@ -1,0 +1,30 @@
+[프로그래머스]
+
+<문제> (https://school.programmers.co.kr/learn/courses/30/lessons/77484)
+
+로또의 최고 순위와 최저 순위
+
+주의사항 : 웬만해선 예외를 따로 둬서 하는 것보단 일괄로 하는 버릇을 들이는게 좋을꺼 같다.
+
+class Solution {
+    public int[] solution(int[] lottos, int[] win_nums) {
+        int[] answer = new int[2];
+        int max = 0, min = 0;
+        int[] number = {6,6,5,4,3,2,1};
+        
+        for (int i=0; i<6; i++) {
+            if (lottos[i] == 0) {
+                max++;
+            }
+            for (int j=0; j<6; j++) {
+                if (lottos[i] == win_nums[j]) {
+                    max++;
+                    min++;
+                }
+            }
+        }
+        answer[0] = number[max];
+        answer[1] = number[min];
+        return answer;
+    }
+}
