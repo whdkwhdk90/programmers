@@ -1,0 +1,41 @@
+[프로그래머스]
+
+<문제> (https://school.programmers.co.kr/learn/courses/30/lessons/42888)
+
+오픈채팅방
+
+import java.util.*;
+
+class Solution {
+    public String[] solution(String[] record) {
+        int changeCnt = 0;
+        HashMap<String, String> map = new HashMap<>();
+        
+        for (int i=0; i< record.length; i++) {
+            String[] sarr = record[i].split(" ");
+            if (sarr[0].equals("Change")) changeCnt++;
+            if (sarr[0].equals("Change") || sarr[0].equals("Enter")) {
+                map.put(sarr[1],sarr[2]);
+            }
+        }
+        
+        String[] answer = new String[record.length - changeCnt];
+        int idx = 0;
+        for (int i=0; i<record.length; i++) {
+            String[] sarr = record[i].split(" ");
+            switch(sarr[0]){
+                case "Enter":
+                    answer[idx] = map.get(sarr[1])+"님이 들어왔습니다.";
+                    idx++;
+                    break;
+                case "Leave":
+                    answer[idx] = map.get(sarr[1])+"님이 나갔습니다.";
+                    idx++;
+                    break;    
+                default:
+                    break;            
+            }
+        }
+        return answer;
+    }
+}
